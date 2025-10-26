@@ -1,9 +1,10 @@
 #include "list.h"
-
+#include <stdlib.h>
 
 int define(List *l)
 {
-
+    l->head = NULL;
+    l->category[0] = '\0';
 }
 
 int insert(List *l, const char description[DESCRIPTION_SIZE])
