@@ -1,10 +1,13 @@
 #include "list.h"
 #include <stdlib.h>
 
-int define(List *l)
+int defineTable(List table[NUM_TYPES])
 {
-    l->head = NULL;
-    l->category[0] = '\0';
+    for (int i = 0; i < NUM_TYPES; i++)
+    {
+        table[i].head = NULL;
+        table[i].category[0] = '\0';
+    }
 }
 
 int insert(List *l, const char description[DESCRIPTION_SIZE])
