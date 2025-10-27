@@ -32,7 +32,19 @@ int insert(List *l, const char description[DESCRIPTION_SIZE])
 
 int searchByCategory(List table[NUM_TYPES], char category)
 {
+    if (!table) return 0;   
 
+    int position = hash(category);
+    if(position == -1) return 0;
+    
+    Node * curr = table[position].head;
+    while(curr != NULL)
+    {
+        printf("%s ",curr->description);
+        curr = curr->next;
+    }
+    printf("\n");
+    return 1;
 }
 
 int countByCategory(List table[NUM_TYPES], char category)
