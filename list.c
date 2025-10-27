@@ -27,7 +27,7 @@ int countByCategory(List table[NUM_TYPES], char category)
 
 int hash(char key)
 {
-
+    return key % NUM_TYPES;
 }
 
 int destroyList(List *l)
