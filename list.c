@@ -1,5 +1,6 @@
 #include "list.h"
 #include <stdlib.h>
+#include <stdio.h>
 #include <string.h>
 
 int defineTable(List table[NUM_TYPES])
@@ -34,7 +35,27 @@ int searchByCategory(List table[NUM_TYPES], char category)
 
 int countByCategory(List table[NUM_TYPES], char category)
 {
+    int index = hash(category);
 
+    int count = 0;
+    while (table[index].category[0] != category && count < NUM_TYPES)   //Tratamento de uma possível colisão
+    {
+        index = (index + 1) % NUM_TYPES;
+        count++;
+    }
+
+    if (count == NUM_TYPES) return 0;                                   //Significa que a categoria não existe
+
+    Node *aux = table[index].head;
+
+    int counter = 0;
+    while (aux)                                                         //Conta a quantidade iterando a lista
+    {
+        counter++;
+        aux = aux->next;
+    }
+
+    return counter;
 }
 
 int hash(char key)
