@@ -32,23 +32,45 @@ int insert(List *l, const char description[DESCRIPTION_SIZE])
 
 int searchByCategory(List table[NUM_TYPES], char category)
 {
-    if (!table) return 0;   
-
-    int position = hash(category);
-    if(position == -1) return 0;
-    
-    Node * curr = table[position].head;
-    while(curr != NULL)
+    if (!table)                                                         //Proteção contra ponteiros nulos
     {
-        printf("%s ",curr->description);
-        curr = curr->next;
+        printf("Tabela invalida!\n");
+        return 0;
+    }
+
+    int index = hash(category);
+
+    int count = 0;
+    while (table[index].category[0] != category && count < NUM_TYPES)   //Tratamento de uma possível colisão
+    {
+        index = (index + 1) % NUM_TYPES;
+        count++;
+    }
+
+    if (count == NUM_TYPES) 
+    {
+        printf("Categoria não encontrada!\n");
+        return 0;
+    }
+
+    printf("%s:", table[index].category);
+
+    Node * aux = table[index].head;
+
+    while(aux)
+    {
+        printf(" - %s",aux->description);                                 //Imprime todos os produtos da lista
+        aux = aux->next;
     }
     printf("\n");
+
     return 1;
 }
 
 int countByCategory(List table[NUM_TYPES], char category)
 {
+    if (!table) return 0;                                               //Proteção contra ponteiros nulos
+
     int index = hash(category);
 
     int count = 0;
