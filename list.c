@@ -28,5 +28,15 @@ int hash(char key)
 
 int destroyList(List *l)
 {
+    if (!l) return 0;                                                   //Proteção contra ponteiros nulos
 
+    l->category[0] = '\0';                                              //Remove a categoria;
+    while (l->head)                                                     //Remove os itens
+    {
+        Node *aux = l->head;
+        l->head = l->head->next;
+        free(aux);
+    }
+
+    return 1;
 }
