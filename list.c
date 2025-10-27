@@ -10,6 +10,8 @@ int defineTable(List table[NUM_TYPES])
         table[i].head = NULL;
         table[i].category[0] = '\0';
     }
+
+    return 1;
 }
 
 int insert(List *l, const char description[DESCRIPTION_SIZE])
