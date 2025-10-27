@@ -22,7 +22,7 @@ typedef struct List
  * @param l Ponteiro para a tabela
  * @return 1 se sucesso, 0 caso contrário
  */
-int define(List table[NUM_TYPES]);
+int defineTable(List table[NUM_TYPES]);
 
 
 /* 
